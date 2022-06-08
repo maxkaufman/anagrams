@@ -7,16 +7,19 @@ from itertools import product
 from string import ascii_lowercase
 keywords = [''.join(i) for i in product(ascii_lowercase, repeat = 3)]
 
+bestwordlist = []
 bestana = ""
 bestscore = 0
 for currana in keywords:
     currscore = 0
+    currwordlist = []
     for dicword in masterlist:
         check = True
         for currdiclet in dicword:
             if dicword.count(currdiclet) > currana.count(currdiclet):
                 check = False
         if check == True:
+            currwordlist.append(dicword)
             if len(dicword) == 3:
                 currscore += 100
             if len(dicword) == 4:
@@ -28,5 +31,13 @@ for currana in keywords:
     if currscore > bestscore:
         bestscore = currscore
         bestana = currana
+        bestwordlist = currwordlist
 
-print(bestscore, bestana)
+print("Best Anagram: " + bestana, "Score: " + bestscore, bestwordlist)
+
+
+
+
+
+
+
